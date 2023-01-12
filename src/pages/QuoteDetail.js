@@ -1,7 +1,9 @@
 import React from 'react'
+import { useParams } from 'react-router-dom'
 
 const QuoteDetail = () => {
-  return <div>QuoteDetail</div>
+  const { quoteId } = useParams()
+  return <div>QuoteDetail {quoteId}</div>
 }
 
 export default QuoteDetail

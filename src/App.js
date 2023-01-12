@@ -12,7 +12,7 @@ function App() {
         <Route
           path='/'
           element={<AllQuotes />}
-          render={() => <Navigate to='/quotes' />}
+          render={() => <Navigate to='/quotes' replace />}
           end
         />
         <Route path='/quotes' element={<AllQuotes />} end />
