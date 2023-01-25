@@ -1,7 +1,19 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
+import QuoteForm from '../quotes/QuoteForm'
 
 const NewQuote = () => {
-  return <div>NewQuote</div>
+  const status = 'completed'
+  const navigate = useNavigate()
+  const addQuoteHandler = (quoteData) => {
+    navigate('/quotes')
+  }
+  return (
+    <QuoteForm
+      isLoading={status === 'pending'}
+      onAddQuote={addQuoteHandler}
+    ></QuoteForm>
+  )
 }
 
 export default NewQuote
