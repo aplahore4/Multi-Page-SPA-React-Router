@@ -1,5 +1,5 @@
 import { Fragment, useEffect } from 'react'
-import { Routes, Route, Link, useParams, useMatch } from 'react-router-dom'
+import { Routes, Route, Link, useParams } from 'react-router-dom'
 import HighlightedQuote from '../components/quotes/HighlightedQuote'
 import Comments from '../components/comments/Comments'
 import useHttp from '../hooks/use-http'
@@ -7,9 +7,7 @@ import { getSingleQuote } from '../lib/api'
 import LoadingSpinner from '../components/UI/LoadingSpinner'
 
 const QuoteDetail = () => {
-  const path = '/quotes/:quoteId'
   const params = useParams()
-  const match = useMatch(path)
 
   const { quoteId } = params
 
@@ -45,17 +43,16 @@ const QuoteDetail = () => {
       <HighlightedQuote text={loadedQuote.text} author={loadedQuote.author} />
       <Routes>
         <Route
-          path={path}
+          path=''
           element={
             <div className='centered'>
-              <Link className='btn--flat' to={`${match.pathname}/comments`}>
+              <Link className='btn--flat' to='comments'>
                 Load Comments
               </Link>
             </div>
           }
-          exact
         />
-        <Route path={`${path}/comments`} element={<Comments />} />
+        <Route path='comments' element={<Comments />} />
       </Routes>
     </Fragment>
   )
