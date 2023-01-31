@@ -1,7 +1,9 @@
-import React from 'react'
-
 const NotFound = () => {
-  return <div>NotFound</div>
+  return (
+    <div className='centered'>
+      <p>Page not found!</p>
+    </div>
+  )
 }
 
 export default NotFound

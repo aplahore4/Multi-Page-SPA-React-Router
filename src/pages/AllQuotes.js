@@ -1,38 +1,29 @@
-import React from 'react'
-import LoadingSpinner from '../UI/LoadingSpinner'
-import NoQuotesFound from '../quotes/NoQuotesFound'
-import QuoteList from '../quotes/QuoteList'
-import { useState } from 'react'
+import { useEffect } from 'react'
 
-const SAMPLE_QUOTES = [
-  {
-    key: '1',
-    id: '1',
-    author: 'Author - Asif',
-    text: 'This is text',
-  },
-  {
-    key: '2',
-    id: '2',
-    author: 'Author - Aslam',
-    text: 'This is a text',
-  },
-  {
-    key: '3',
-    id: '3',
-    author: 'Author - Zain',
-    text: 'This is a text',
-  },
-]
+import QuoteList from '../components/quotes/QuoteList'
+import LoadingSpinner from '../components/UI/LoadingSpinner'
+import NoQuotesFound from '../components/quotes/NoQuotesFound'
+import useHttp from '../hooks/use-http'
+import { getAllQuotes } from '../lib/api'
 
 const AllQuotes = () => {
-  const [loadedQuotes, setLoadedQuotes] = useState(SAMPLE_QUOTES)
+  const {
+    sendRequest,
+    status,
+    data: loadedQuotes,
+    error,
+  } = useHttp(getAllQuotes, true)
 
-  const status = 'completed'
-  const error = null
+  useEffect(() => {
+    sendRequest()
+  }, [sendRequest])
 
   if (status === 'pending') {
-    return <LoadingSpinner />
+    return (
+      <div className='centered'>
+        <LoadingSpinner />
+      </div>
+    )
   }
 
   if (error) {

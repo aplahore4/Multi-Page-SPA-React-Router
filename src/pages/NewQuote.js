@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import QuoteForm from '../quotes/QuoteForm'
+import QuoteForm from '../components/quotes/QuoteForm'
 
 const NewQuote = () => {
   const status = 'completed'
