@@ -9,9 +9,9 @@ function App() {
   return (
     <Layout>
       <Routes>
-        <Route path='/' element={<Navigate to='/quotes' replace />} end />
+        <Route path='/' element={<Navigate to='/quotes' replace />} />
         <Route path='/quotes' element={<AllQuotes />} end />
-        <Route path='/quotes/:quoteId' element={<QuoteDetail />} />
+        <Route path='/quotes/:quoteId/*' element={<QuoteDetail />} />
         <Route path='/new-quote' element={<NewQuote />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
