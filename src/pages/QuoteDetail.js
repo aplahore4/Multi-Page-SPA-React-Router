@@ -53,6 +53,14 @@ const QuoteDetail = () => {
           }
         />
         <Route path='comments' element={<Comments />} />
+        <Route
+          path='*'
+          element={
+            <div className='centered'>
+              <p>No comment found!</p>
+            </div>
+          }
+        />
       </Routes>
     </Fragment>
   )

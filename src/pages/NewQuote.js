@@ -1,13 +1,25 @@
-import React from 'react'
+import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import QuoteForm from '../components/quotes/QuoteForm'
 
+import useHttp from '../hooks/use-http'
+import { addQuote } from '../lib/api'
+
 const NewQuote = () => {
-  const status = 'completed'
+  const { sendRequest, status } = useHttp(addQuote)
+
   const navigate = useNavigate()
+
+  useEffect(() => {
+    if (status === 'completed') {
+      navigate('/quotes')
+    }
+  }, [navigate, status])
+
   const addQuoteHandler = (quoteData) => {
-    navigate('/quotes')
+    sendRequest(quoteData)
   }
+
   return (
     <QuoteForm
       isLoading={status === 'pending'}
